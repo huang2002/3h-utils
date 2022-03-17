@@ -12,7 +12,7 @@ export default [
         ],
         output: {
             format: 'umd',
-            name: 'Utils',
+            name: 'HUtils',
             file: './dist/3h-utils.umd.js'
         }
     },

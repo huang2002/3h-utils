@@ -1,5 +1,5 @@
 // @ts-check
-const Utils = /** @type {import('..')} */(
+const HUtils = /** @type {import('..')} */(
     /** @type {unknown} */(require('../dist/3h-utils.umd.js'))
 );
 
@@ -18,7 +18,7 @@ exports.timerTests = {
             count++;
         };
 
-        const wrapper = Utils.throttle(GAP, callback);
+        const wrapper = HUtils.throttle(GAP, callback);
         ctx.assertStrictEqual(count, 0);
 
         wrapper();
@@ -52,7 +52,7 @@ exports.timerTests = {
             count++;
         };
 
-        const wrapper = Utils.debounce(TIMEOUT, callback);
+        const wrapper = HUtils.debounce(TIMEOUT, callback);
         ctx.assertStrictEqual(count, 0);
 
         wrapper();
