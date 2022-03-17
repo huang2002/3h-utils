@@ -11,7 +11,7 @@
     "prebuild": "tsc",
     "build": "rollup -c",
     "postbuild": "terser dist/3h-utils.js --config-file terser.json --module -o dist/3h-utils.min.js && terser dist/3h-utils.umd.js --config-file terser.json -o dist/3h-utils.umd.min.js && node stat",
-    "docs": "dts2md \"**\" \"!index.d.ts\" -i ./types -o ./docs -l -I Home.md",
+    "docs": "dts2md \"**\" \"!index.d.ts\" -i ./types -o ./docs -l -I API.md",
     "test": "node ./test/index.js"
   },
   "repository": "huang2002/3h-utils",

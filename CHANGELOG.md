@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- Change UMD name to `HUtils`
+- Improve docs
+
 ## 0.2.0
 
 - Add `throttle` & `debounce`
