@@ -96,4 +96,16 @@ exports.arrayTests = {
 
     },
 
+    sort(ctx) {
+
+        const array = [0, 4, 2, 3, 1];
+
+        HUtils.sort(array, (a, b) => (a - b));
+        ctx.assertShallowEqual(array, [0, 1, 2, 3, 4]);
+
+        HUtils.sort(array, (a, b) => (b - a));
+        ctx.assertShallowEqual(array, [4, 3, 2, 1, 0]);
+
+    },
+
 };
