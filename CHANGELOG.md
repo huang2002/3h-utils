@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+- Add `shuffle`
+- Improve tests
+
 ## 0.3.0
 
 - Change UMD name to `HUtils`
