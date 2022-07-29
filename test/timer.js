@@ -28,15 +28,20 @@ exports.timerTests = {
         ctx.assertStrictEqual(count, 1);
 
         ctx.expectResolved(
-            new Promise(resolve => {
-                setTimeout(() => {
-                    wrapper();
-                    ctx.assertStrictEqual(count, 2);
-                    wrapper();
-                    ctx.assertStrictEqual(count, 2);
-                    resolve();
-                }, GAP + 5);
-            }),
+            new Promise(
+                /**
+                 * @param {(value: void) => void} resolve
+                 */
+                (resolve) => {
+                    setTimeout(() => {
+                        wrapper();
+                        ctx.assertStrictEqual(count, 2);
+                        wrapper();
+                        ctx.assertStrictEqual(count, 2);
+                        resolve();
+                    }, GAP + 5);
+                }
+            ),
             'throttle-async',
         );
 
@@ -59,18 +64,23 @@ exports.timerTests = {
         ctx.assertStrictEqual(count, 0);
 
         ctx.expectResolved(
-            new Promise(resolve => {
-                setTimeout(() => {
-                    ctx.assertStrictEqual(count, 0);
-                    wrapper();
+            new Promise(
+                /**
+                 * @param {(value: void) => void} resolve
+                 */
+                (resolve) => {
                     setTimeout(() => {
-                        ctx.assertStrictEqual(count, 1);
+                        ctx.assertStrictEqual(count, 0);
                         wrapper();
-                        ctx.assertStrictEqual(count, 1);
-                        resolve();
-                    }, TIMEOUT + 5);
-                }, TIMEOUT / 2);
-            }),
+                        setTimeout(() => {
+                            ctx.assertStrictEqual(count, 1);
+                            wrapper();
+                            ctx.assertStrictEqual(count, 1);
+                            resolve();
+                        }, TIMEOUT + 5);
+                    }, TIMEOUT / 2);
+                }
+            ),
             'debounce-async',
         );
 
