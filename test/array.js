@@ -108,4 +108,18 @@ exports.arrayTests = {
 
     },
 
+    shuffle(ctx) {
+        const array = [10, 11, 12, 13, 14];
+        const array1 = array.slice();
+        const array2 = array.slice();
+        HUtils.shuffle(array1);
+        HUtils.shuffle(array2);
+        ctx.assertShallowEqual(array1.slice().sort(), array.slice().sort());
+        ctx.assertShallowEqual(array2.slice().sort(), array.slice().sort());
+        ctx.assert(
+            (JSON.stringify(array1) !== JSON.stringify(array))
+            || (JSON.stringify(array2) !== JSON.stringify(array))
+        );
+    },
+
 };

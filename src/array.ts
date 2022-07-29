@@ -93,3 +93,18 @@ export const sort = <T>(
         }
     }
 };
+/** dts2md break */
+/**
+ * Shuffle the array elements in place.
+ */
+export const shuffle = <T>(
+    array: T[],
+) => {
+    let j, t;
+    for (let i = array.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * i);
+        t = array[i];
+        array[i] = array[j];
+        array[j] = t;
+    }
+};
