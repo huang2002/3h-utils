@@ -4,7 +4,7 @@ const HUtils = /** @type {import('..')} */(
 );
 
 /**
- * @type {Record<string, import('3h-test').TestCaseCallback>}
+ * @type {import('3h-test').TestCases}
  */
 exports.mathTests = {
 
