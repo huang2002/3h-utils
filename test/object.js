@@ -24,4 +24,15 @@ exports.objectTests = {
 
     },
 
+    isDict(ctx) {
+        ctx.assertStrictEqual(HUtils.isDict({}), true);
+        ctx.assertStrictEqual(HUtils.isDict({ foo: 'bar' }), true);
+        ctx.assertStrictEqual(HUtils.isDict(Object.create(null)), true);
+        ctx.assertStrictEqual(HUtils.isDict(Object()), true);
+        ctx.assertStrictEqual(HUtils.isDict(new Object()), true);
+        ctx.assertStrictEqual(HUtils.isDict(Object), false);
+        ctx.assertStrictEqual(HUtils.isDict(Array), false);
+        ctx.assertStrictEqual(HUtils.isDict([]), false);
+    },
+
 };

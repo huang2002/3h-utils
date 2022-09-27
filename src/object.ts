@@ -19,3 +19,10 @@ export const merge: Merge = (objects: unknown[]) => (
         ...objects,
     )
 );
+/** dts2md break */
+/**
+ * Returns `Object.prototype.toString.call(value) === '[object Object]'`.
+ */
+export const isDict = (value: unknown): value is Record<any, any> => (
+    Object.prototype.toString.call(value) === '[object Object]'
+);
