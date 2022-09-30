@@ -4,7 +4,7 @@
  * the callback won't be invoked
  * and `undefined` will be returned.)
  */
-export interface ThrottleWrapper<T extends (...args: any) => any> {
+export interface ThrottleWrapper<T extends (...args: any[]) => any> {
     (...args: Parameters<T>): ReturnType<T> | undefined;
     throttleGap: number;
 }
@@ -12,7 +12,7 @@ export interface ThrottleWrapper<T extends (...args: any) => any> {
 /**
  * Create a throttle wrapper.
  */
-export const throttle = <T extends (...args: any) => any>(
+export const throttle = <T extends (...args: any[]) => any>(
     gap: number,
     callback: T,
 ): ThrottleWrapper<T> => {
@@ -24,7 +24,7 @@ export const throttle = <T extends (...args: any) => any>(
             || (now - lastInvokeTime >= throttleWrapper.throttleGap)
         ) {
             lastInvokeTime = now;
-            return callback(...(args as unknown[]));
+            return callback(...args);
         }
     };
     throttleWrapper.throttleGap = gap;
@@ -36,7 +36,7 @@ export const throttle = <T extends (...args: any) => any>(
  * (Invokes the callback after specific timeout.
  * Duplicate invocation resets the timer.)
  */
-export interface DebounceWrapper<T extends (...args: any) => any> {
+export interface DebounceWrapper<T extends (...args: any[]) => any> {
     (...args: Parameters<T>): void;
     debounceTimeout: number;
 }
@@ -44,7 +44,7 @@ export interface DebounceWrapper<T extends (...args: any) => any> {
 /**
  * Create a debounce wrapper.
  */
-export const debounce = <T extends (...args: any) => any>(
+export const debounce = <T extends (...args: any[]) => any>(
     timeout: number,
     callback: T,
 ): DebounceWrapper<T> => {
@@ -56,7 +56,7 @@ export const debounce = <T extends (...args: any) => any>(
         timer = setTimeout(
             callback,
             debounceWrapper.debounceTimeout,
-            ...(args as unknown[]),
+            ...args,
         );
     };
     debounceWrapper.debounceTimeout = timeout;
