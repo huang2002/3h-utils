@@ -6,7 +6,7 @@ const HUtils = /** @type {import('..')} */(
 /**
  * @type {import('3h-test').TestCases}
  */
-exports.timerTests = {
+exports.functionTests = {
 
     throttle(ctx) {
 
