@@ -4,11 +4,10 @@
  * the callback won't be invoked
  * and `undefined` will be returned.)
  */
-export type ThrottleWrapper<T extends (...args: any) => any> =
-    & ((...args: Parameters<T>) => ReturnType<T> | undefined)
-    & {
-        throttleGap: number;
-    };
+export interface ThrottleWrapper<T extends (...args: any) => any> {
+    (...args: Parameters<T>): ReturnType<T> | undefined;
+    throttleGap: number;
+}
 /** dts2md break */
 /**
  * Create a throttle wrapper.
@@ -37,11 +36,10 @@ export const throttle = <T extends (...args: any) => any>(
  * (Invokes the callback after specific timeout.
  * Duplicate invocation resets the timer.)
  */
-export type DebounceWrapper<T extends (...args: any) => any> =
-    & ((...args: Parameters<T>) => void)
-    & {
-        debounceTimeout: number;
-    };
+export interface DebounceWrapper<T extends (...args: any) => any> {
+    (...args: Parameters<T>): void;
+    debounceTimeout: number;
+}
 /** dts2md break */
 /**
  * Create a debounce wrapper.
