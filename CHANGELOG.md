@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.0
+
+- Add `lock`
+- Improve docs
+
 ## 0.6.0
 
 - Add `isDict`
