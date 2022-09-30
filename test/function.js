@@ -86,4 +86,35 @@ exports.functionTests = {
 
     },
 
+    lock(ctx) {
+        const data = [];
+        const wrapper = HUtils.lock((x) => {
+            data.push(x);
+            setTimeout(() => {
+                wrapper.disabled = false;
+            }, 100);
+        });
+        ctx.expectResolved(
+            new Promise(
+                /**
+                 * @param {(value: void) => void} resolve
+                 */
+                (resolve) => {
+                    wrapper(0);
+                    setTimeout(() => {
+                        wrapper(1);
+                    }, 50);
+                    setTimeout(() => {
+                        wrapper(2);
+                    }, 150);
+                    setTimeout(() => {
+                        ctx.assertDeepEqual(data, [0, 2]);
+                        resolve();
+                    }, 200);
+                }
+            ),
+            'lock-async',
+        );
+    },
+
 };

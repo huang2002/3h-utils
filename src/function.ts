@@ -62,3 +62,31 @@ export const debounce = <T extends (...args: any[]) => any>(
     debounceWrapper.debounceTimeout = timeout;
     return debounceWrapper;
 };
+/** dts2md break */
+/**
+ * Type of lock wrappers.
+ * (If `disabled` is `false`(default state), set it to `true`
+ * and invoke the callback; otherwise, return `undefined`.
+ * You will need to manually reset `disabled` to `false`,
+ * to make the callback available again.)
+ */
+export interface LockWrapper<T extends (...args: any[]) => any> {
+    (...args: Parameters<T>): ReturnType<T> | undefined;
+    disabled: boolean;
+}
+/** dts2md break */
+/**
+ * Create a lock wrapper.
+ */
+export const lock = <T extends (...args: any[]) => any>(
+    callback: T,
+): LockWrapper<T> => {
+    const wrapper: LockWrapper<T> = (...args) => {
+        if (!wrapper.disabled) {
+            wrapper.disabled = true;
+            return callback(...args);
+        }
+    };
+    wrapper.disabled = false;
+    return wrapper;
+};
