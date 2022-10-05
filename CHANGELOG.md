@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0
+
+- Modify parameter type of `merge`
+
 ## 0.7.0
 
 - Add `lock`
