@@ -1,6 +1,6 @@
 {
   "name": "3h-utils",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "A personal utility lib.",
   "module": "./dist/3h-utils.min.js",
   "main": "./dist/3h-utils.umd.min.js",
