@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0
+
+- Add `unique`
+
 ## 0.8.0
 
 - Modify parameter type of `merge`
