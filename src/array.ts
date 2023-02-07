@@ -108,3 +108,21 @@ export const shuffle = <T>(
         array[j] = t;
     }
 };
+/** dts2md break */
+/**
+ * Get an array containing the unique elements
+ * of the given array.
+ */
+export const unique = <T>(
+    array: T[],
+) => {
+    const result: T[] = [];
+    let element: T;
+    for (let i = 0; i < array.length; i++) {
+        element = array[i];
+        if (result.indexOf(element) === -1) {
+            result.push(element);
+        }
+    }
+    return result;
+};

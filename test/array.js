@@ -122,4 +122,10 @@ exports.arrayTests = {
         );
     },
 
+    unique(ctx) {
+        ctx.assertShallowEqual(HUtils.unique([]), []);
+        ctx.assertShallowEqual(HUtils.unique(['a', 'b']), ['a', 'b']);
+        ctx.assertShallowEqual(HUtils.unique(['a', 'b', 'a']), ['a', 'b']);
+    },
+
 };
