@@ -35,4 +35,19 @@ exports.objectTests = {
         ctx.assertStrictEqual(HUtils.isDict([]), false);
     },
 
+    cloneShallowly(ctx) {
+        const source = { a: 0, b: { c: 1 } };
+        const copy = HUtils.cloneShallowly(source);
+        ctx.assertStrictEqual(copy.a, source.a);
+        ctx.assertStrictEqual(copy.b, source.b);
+    },
+
+    cloneDeeply(ctx) {
+        const source = { a: 0, b: { c: 1 } };
+        const copy = HUtils.cloneDeeply(source);
+        ctx.assertStrictEqual(copy.a, source.a);
+        ctx.assert(copy.b !== source.b);
+        ctx.assertStrictEqual(copy.b.c, source.b.c);
+    },
+
 };
