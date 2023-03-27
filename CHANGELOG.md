@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0
+
+- Add `cloneShallowly` & `cloneDeeply`
+
 ## 0.9.0
 
 - Add `unique`
