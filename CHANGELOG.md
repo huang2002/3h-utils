@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.0
+
+- Improve clone functions
+
 ## 0.10.0
 
 - Add `cloneShallowly` & `cloneDeeply`
