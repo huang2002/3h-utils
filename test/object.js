@@ -36,18 +36,28 @@ exports.objectTests = {
     },
 
     cloneShallowly(ctx) {
-        const source = { a: 0, b: { c: 1 } };
-        const copy = HUtils.cloneShallowly(source);
-        ctx.assertStrictEqual(copy.a, source.a);
-        ctx.assertStrictEqual(copy.b, source.b);
+        const objectSource = { a: 0, b: { c: 1 } };
+        const objectCopy = HUtils.cloneShallowly(objectSource);
+        ctx.assertStrictEqual(objectCopy.a, objectSource.a);
+        ctx.assertStrictEqual(objectCopy.b, objectSource.b);
+        /**
+         * @type {[number, [number]]}
+         */
+        const arraySource = [0, [1]];
+        const arrayCopy = HUtils.cloneShallowly(arraySource);
+        ctx.assertStrictEqual(arrayCopy.length, arraySource.length);
+        ctx.assertStrictEqual(arrayCopy[0], arraySource[0]);
+        ctx.assertStrictEqual(arrayCopy[1].length, arraySource[1].length);
+        ctx.assertStrictEqual(arrayCopy[1], arraySource[1]);
     },
 
     cloneDeeply(ctx) {
-        const source = { a: 0, b: { c: 1 } };
+        const source = { a: 0, b: [1] };
         const copy = HUtils.cloneDeeply(source);
         ctx.assertStrictEqual(copy.a, source.a);
         ctx.assert(copy.b !== source.b);
-        ctx.assertStrictEqual(copy.b.c, source.b.c);
+        ctx.assertStrictEqual(copy.b.length, source.b.length);
+        ctx.assertStrictEqual(copy.b[0], source.b[0]);
     },
 
 };

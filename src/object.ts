@@ -28,28 +28,44 @@ export const isDict = (value: unknown): value is Record<any, any> => (
 );
 /** dts2md break */
 /**
- * Clone a dict shallowly.
+ * Clone an object shallowly.
  */
-export const cloneShallowly = <T extends {}>(dict: T): T => (
-    Object.assign(
-        Object.create(null),
-        dict,
-    )
-);
+export const cloneShallowly = <T>(object: T): T => {
+    if (Array.isArray(object)) {
+        return object.map(
+            (item) => (item)
+        ) as T;
+    } else if (object && (typeof object === 'object')) {
+        return Object.assign(
+            Object.create(null),
+            object,
+        );
+    } else {
+        return object;
+    }
+};
 /** dts2md break */
 /**
- * Clone a dict deeply.
+ * Clone an object deeply.
  * (A simple, recursive implementation.)
  */
-export const cloneDeeply = <T extends {}>(dict: T): T => {
-    const result = Object.create(null) as T;
-    for (const key in dict) {
-        const value = dict[key];
-        if (value && (typeof value === 'object')) {
-            result[key] = cloneDeeply(value);
-        } else {
-            result[key] = value;
+export const cloneDeeply = <T>(object: T): T => {
+    if (Array.isArray(object)) {
+        return object.map(
+            (item) => cloneDeeply(item)
+        ) as T;
+    } else if (object && (typeof object === 'object')) {
+        const result = Object.create(null) as T;
+        for (const key in object) {
+            const value = object[key];
+            if (value && (typeof value === 'object')) {
+                result[key] = cloneDeeply(value);
+            } else {
+                result[key] = value;
+            }
         }
+        return result;
+    } else {
+        return object;
     }
-    return result;
 };
